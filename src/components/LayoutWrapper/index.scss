@@ -1,0 +1,43 @@
+.main-menu {
+  padding: 8px;
+  background-color: rgb(1, 104, 250);
+
+  .ant-menu-submenu-title {
+    padding: 0 !important;
+    width: 100% !important;
+    height: unset !important;
+    padding: 8px 0 !important;
+    margin: 0 !important;
+    border: 1px solid transparent !important;
+    margin-bottom: 8px !important;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(29, 78, 216, 0.5);
+      border: 1px solid rgba(96, 165, 250) !important;
+    }
+
+    svg {
+      height: 28px;
+      width: 28px;
+      font-weight: 600;
+      
+      color: #fff;
+      opacity: 1 !important;
+    }
+
+    span {
+      opacity: 1 !important;
+      margin: 4px 0 0 0px !important;
+      
+      font-size: 9.6px;
+      font-weight: 600;
+      line-height: 17px;
+      margin-top: 4px;
+    }
+  }
+}
