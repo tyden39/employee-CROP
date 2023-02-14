@@ -1,5 +1,5 @@
 import { Button, Col, Divider, Form, Input, Row, Select } from "antd";
-import { useEffect } from "react";
+import { ChangeEvent } from "react";
 import { shallow } from "zustand/shallow";
 import useEmployeeStore from "../../pages/Employee/store";
 import { EmployeeFilter } from "../../pages/Employee/types";
@@ -7,6 +7,7 @@ import './index.scss';
 
 const Filter = () => {
   const [form] = Form.useForm()
+
   const { filter, setFilter, fetchEmployee } = useEmployeeStore(
     (state) => ({
       fetchEmployee: state.fetchEmployee,
@@ -21,17 +22,30 @@ const Filter = () => {
     await fetchEmployee()
   }
 
-  const handleFormChange = (changeValues: EmployeeFilter, allValues: EmployeeFilter) => {
-    setFilter(changeValues)
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const {value, name} = e.target
+    setFilter({[name]: value})
   }
 
-  useEffect(() => {
-    if(filter?.clearFilter) {
-      form.resetFields()
-      setFilter({clearFilter: false, keyword: '', office: '', department: '', type: '', status: ''})
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter?.clearFilter])
+  const handleOfficeChange = (value: any, value2: any) => {
+    setFilter({office: value})
+  }
+
+  const handleDepartmentChange = (value: any, value2: any) => {
+    setFilter({department: value})
+  }
+
+  const handleTypeChange = (value: any, value2: any) => {
+    setFilter({type: value})
+  }
+
+  const handleStatusChange = (value: any, value2: any) => {
+    setFilter({status: value})
+  }
+
+  // const handleFormChange = (changedValues: any, allValues: any) => {
+  //   setFilter(changedValues)
+  // }
 
   return (
     <Form
@@ -40,36 +54,36 @@ const Filter = () => {
       wrapperCol={{ span: 16 }}
       style={{ width: 336 }}
       onFinish={handleSubmit}
-      onValuesChange={handleFormChange}
+      // onValuesChange={handleFormChange}
       // onFinishFailed={onFinishFailed}
       autoComplete="off"
       form={form}
       
     >
-      <Form.Item label="Từ khoá" name="keyword" valuePropName="value">
-        <Input type="text" value={filter?.keyword} placeholder="Tên, chức vụ, điện thoại,..." />
+      <Form.Item label="Từ khoá" valuePropName="value">
+        <Input type="text" name="keyword" value={filter?.keyword} onChange={handleInputChange} placeholder="Tên, chức vụ, điện thoại,..." />
       </Form.Item>
 
-      <Form.Item label="Văn phòng" name="office">
-        <Select value={filter?.office}>
+      <Form.Item label="Văn phòng">
+        <Select value={filter?.office} onChange={handleOfficeChange}>
           <Select.Option value="51">Luỹ Bán Bích</Select.Option>
         </Select>
       </Form.Item>
 
-      <Form.Item label="Phòng ban" name="department">
-        <Select value={filter?.department}>
+      <Form.Item label="Phòng ban">
+        <Select value={filter?.department} onChange={handleDepartmentChange}>
           <Select.Option value="924">HEADQUATER</Select.Option>
         </Select>
       </Form.Item>
 
-      <Form.Item label="LHCV" name="type">
-        <Select value={filter?.type}>
+      <Form.Item label="LHCV">
+        <Select value={filter?.type} onChange={handleTypeChange}>
           <Select.Option value="0">Nhân viên chính thức</Select.Option>
         </Select>
       </Form.Item>
 
-      <Form.Item label="Trạng thái" name="status">
-        <Select value={filter?.status}>
+      <Form.Item label="Trạng thái">
+        <Select value={filter?.status} onChange={handleStatusChange}>
           <Select.Option value="1">Có hiệu lực</Select.Option>
           <Select.Option value="3">Vô hiệu lực</Select.Option>
         </Select>

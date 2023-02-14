@@ -30,7 +30,6 @@ const ContentHeader = ({
 
   const handleClearFilter = async () => {
     if (filter?.active){
-      setFilter({ clearFilter: true, open: false, active: false });
       await fetchEmployee({keyword: '', office: '', department: '', type: '', status: '', open: false, active: false})
     }
   };

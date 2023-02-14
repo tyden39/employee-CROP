@@ -28,7 +28,6 @@ const useEmployeeStore = create<EmployeeStore>((set, get) => ({
   },
   filter: {
     open: false,
-    clearFilter: false
   },
   loading: false,
   sortBy: "id",
@@ -39,18 +38,17 @@ const useEmployeeStore = create<EmployeeStore>((set, get) => ({
 
     const params = {
       ...defaultParams,
-      keyword: filter?.keyword || "",
-      office_id: filter?.office || "",
-      department_id: filter?.department || "",
-      type: filter?.type || "",
-      status: filter?.status || "",
+      keyword: newFilter ? newFilter.keyword : filter?.keyword || "",
+      office_id: newFilter ? newFilter.office : filter?.office || "",
+      department_id: newFilter ? newFilter.department : filter?.department || "",
+      type: newFilter ? newFilter.type : filter?.type || "",
+      status: newFilter ? newFilter.status : filter?.status || "",
       page: pagination.page || 1,
       limit: pagination.limit || 20,
       sort_by: sortBy,
       sort_type: sortType,
-      ...newFilter,
     };
-
+    
     set(state => ({...state, loading: true}))
 
     try {

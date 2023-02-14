@@ -38,7 +38,7 @@ function getItem(
 
 const items2: MenuProps['items'] = [
   getItem('BÁN HÀNG', 'sub1', iconList[0], [
-    getItem('Item 1', 'g1', null, [getItem('Option 1', '1', null, [getItem('Option 1', '1')]), getItem('Option 2', '6')], 'group'),
+    getItem('Item 1', 'g1', null, [getItem('Option 1', '1', null, [getItem('Option 1', '13')]), getItem('Option 2', '6')], 'group'),
   ]),
   getItem('TỒN KHO', 'sub2', iconList[1], [
     getItem('Item 1', 'g2', null, [getItem('Option 1', '2'), getItem('Option 2', '7')], 'group'),

@@ -11,7 +11,6 @@ export interface EmployeeFilter {
   type?: string;
   status?: string;
   open?: boolean;
-  clearFilter?: boolean;
   active?: boolean;
 }
 
